@@ -1,9 +1,10 @@
-name: Manual
-on:
-  schedule:                 # 定期実行イベント
-    - cron: '*/15 * * * *'
+name: Secrets
+on: push
 jobs:
-  run:
+  print:
     runs-on: ubuntu-latest
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}           # Secretsの参照
     steps:
-      - run: date
+      - run: echo "${PASSWORD}"                   # ログ出力はマスクされる
+      - run: echo "${PASSWORD:0:1} ${PASSWORD#?}" # ログ出力はマスクされない
