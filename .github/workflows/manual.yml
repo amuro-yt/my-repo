@@ -1,10 +1,7 @@
-name: Secrets
+name: Naming
 on: push
 jobs:
   print:
     runs-on: ubuntu-latest
-    env:
-      PASSWORD: ${{ secrets.PASSWORD }}           # Secretsの参照
     steps:
-      - run: echo "${PASSWORD}"                   # ログ出力はマスクされる
-      - run: echo "${PASSWORD:0:1} ${PASSWORD#?}" # ログ出力はマスクされない
+      - run: echo "Hello"
